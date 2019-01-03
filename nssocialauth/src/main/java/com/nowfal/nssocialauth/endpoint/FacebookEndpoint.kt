@@ -1,4 +1,4 @@
-package com.izikode.izilib.roguin.endpoint
+package com.nowfal.nssocialauth.endpoint
 
 import android.content.Context
 import android.net.Uri

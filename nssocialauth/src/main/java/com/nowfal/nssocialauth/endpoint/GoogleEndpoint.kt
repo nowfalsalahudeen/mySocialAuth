@@ -18,8 +18,7 @@ import android.R.attr.data
 import android.content.ContentValues.TAG
 import androidx.core.app.NotificationCompat.getExtras
 import android.os.Bundle
-
-
+import com.google.android.gms.auth.GoogleAuthUtil
 
 
 class GoogleEndpoint(
@@ -59,19 +58,19 @@ class GoogleEndpoint(
     override fun requestSignIn(response: (success: Boolean, token: RoguinToken?, error: RoguinException?) -> Unit) {
         nsSocialActivity.requestResult(googleClient.signInIntent) { success, result ->
             if (!success) {
-                println(result?.extras)
-                val bundle = result?.extras
-                if (bundle != null) {
-                    for (key in bundle!!.keySet()) {
-                        val value = bundle!!.get(key)
-                        Log.d(
-                            TAG, String.format(
-                                "%s %s (%s)", key,
-                                value!!.toString(), value!!.javaClass.name
-                            )
-                        )
-                    }
-                }
+//                println(result?.extras)
+//                val bundle = result?.extras
+//                if (bundle != null) {
+//                    for (key in bundle!!.keySet()) {
+//                        val value = bundle!!.get(key)
+//                        Log.d(
+//                            TAG, String.format(
+//                                "%s %s (%s)", key,
+//                                value!!.toString(), value!!.javaClass.name
+//                            )
+//                        )
+//                    }
+//                }
 
                 response.invoke(false, null, RoguinException(null, result))
             } else {
@@ -79,6 +78,7 @@ class GoogleEndpoint(
 
                 try {
                     val taskResult = task.getResult(ApiException::class.java)
+
                     response.invoke(true, taskResult?.toToken(), null)
                 } catch (googleApiException: ApiException) {
                     response.invoke(false, null, RoguinException(googleApiException, result))
@@ -90,7 +90,8 @@ class GoogleEndpoint(
     private fun GoogleSignInAccount.toToken() = RoguinToken(
         endpoint = this@GoogleEndpoint::class,
         authenticatedToken = this.idToken ?: "",
-        userId = this.id ?: ""
+        userId = this.id ?: "",
+        account = this.account!!
     )
 
     override fun requestSignOut(response: (success: Boolean) -> Unit) {

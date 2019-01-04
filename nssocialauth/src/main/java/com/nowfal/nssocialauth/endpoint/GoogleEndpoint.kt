@@ -13,12 +13,6 @@ import com.nowfal.nssocialauth.model.RoguinProfile
 import com.nowfal.nssocialauth.model.RoguinToken
 import android.content.pm.PackageManager
 import android.util.Log
-import android.R.attr.keySet
-import android.R.attr.data
-import android.content.ContentValues.TAG
-import androidx.core.app.NotificationCompat.getExtras
-import android.os.Bundle
-import com.google.android.gms.auth.GoogleAuthUtil
 
 
 class GoogleEndpoint(

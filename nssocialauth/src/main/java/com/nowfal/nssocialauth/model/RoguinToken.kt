@@ -12,5 +12,5 @@ data class RoguinToken(
 
     val userId: String,
 
-    val account : Account
+    val account: Account?
 )

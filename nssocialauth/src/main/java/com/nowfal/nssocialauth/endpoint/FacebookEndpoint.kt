@@ -73,7 +73,8 @@ class FacebookEndpoint(
     private fun LoginResult.toToken() = RoguinToken(
         endpoint = this@FacebookEndpoint::class,
         authenticatedToken = this.accessToken.token,
-        userId = this.accessToken.userId
+        userId = this.accessToken.userId,
+        account = null
     )
 
     override fun requestSignOut(response: (success: Boolean) -> Unit) {

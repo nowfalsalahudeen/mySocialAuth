@@ -1,5 +1,6 @@
 package com.nowfal.nssocialauth.model
 
+import android.accounts.Account
 import android.net.Uri
 
 data class RoguinProfile(
@@ -8,6 +9,6 @@ data class RoguinProfile(
 
     val name: String?,
 
-    val photo: Uri?
-
+    val photo: Uri?,
+    val account: Account?
 )

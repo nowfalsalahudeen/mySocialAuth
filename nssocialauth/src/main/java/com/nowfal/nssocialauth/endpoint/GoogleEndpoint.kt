@@ -107,7 +107,8 @@ class GoogleEndpoint(
     private fun GoogleSignInAccount.toProfile() = RoguinProfile(
         email = this.email,
         name = this.displayName,
-        photo = this.photoUrl
+        photo = this.photoUrl,
+        account = this.account
     )
 
     companion object {

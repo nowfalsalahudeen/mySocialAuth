@@ -113,7 +113,8 @@ class FacebookEndpoint(
     private fun JSONObject.toProfile() = RoguinProfile(
         email = this.getString("email"),
         name = this.getString("name"),
-        photo = this.getJSONObject("picture")?.getJSONObject("data")?.getString("url")?.let { Uri.parse(it) }
+        photo = this.getJSONObject("picture")?.getJSONObject("data")?.getString("url")?.let { Uri.parse(it) },
+        account = null
     )
 
     companion object {
